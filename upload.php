@@ -14,6 +14,11 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 
+if($imageFileType !== 'mp3'){
+    echo "Sorry, your file format is not mp3.";
+    $uploadOk = 0;   
+}
+
 if($_FILES["fileToUpload"]["size"] > 50000000 and $uploadOk ==1 ){
     echo "sorry file size exceeds 50MB";
     $uploadOk = 0;
