@@ -1,3 +1,7 @@
+<?php session_start();
+if(isset($_SESSION['vid']))
+{
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -447,48 +451,50 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-                <a class="navbar-brand"><?php echo "Welcome"?></a>
+                <a class="navbar-brand"><?php echo "Welcome, ".$_SESSION['name'];?></a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     
-                    <li><a data-toggle="modal" data-target="#myModal">PROFILE</a></li>
-                            <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">PROFILE</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-10 bhoechie-tab-container">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
-              <div class="list-group">
-                <a href="#" class="list-group-item active text-center">
-                  <h4 class="glyphicon glyphicon-user"></h4><br/>View Profile
-                </a>
-                <a href="#" class="list-group-item text-center">
-                  <h4 class="glyphicon glyphicon-wrench"></h4><br/>Change Password
-                </a>
-                <a href="#" class="list-group-item text-center">
-                  <h4 class="glyphicon glyphicon-pencil"></h4><br/>Edit Profile
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
-                <!-- View section -->
+                    <!-- <li><a data-toggle="modal" data-target="#myModal">PROFILE</a></li> -->
+                    <!-- The Modal -->
+                      <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">PROFILE</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-9 col-xs-10 bhoechie-tab-container">
+                                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                                    <div class="list-group">
+                                      <a href="#" class="list-group-item active text-center">
+                                        <h4 class="glyphicon glyphicon-user"></h4><br/>View Profile
+                                      </a>
+                                      <a href="#" class="list-group-item text-center">
+                                        <h4 class="glyphicon glyphicon-wrench"></h4><br/>Change Password
+                                      </a>
+                                      <a href="#" class="list-group-item text-center">
+                                        <h4 class="glyphicon glyphicon-pencil"></h4><br/>Edit Profile
+                                      </a>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                                    <!-- View section -->
                 <div class="bhoechie-tab-content active">
                     <center>
                       <form method="post" style="margin-top: 10px">
                           <div class="form-group">
                               <label for="name">Name:</label>
+                              <?php
+                              require_once("DBConn.php");
+                              
+                              ?>
                               <input class="form-control" type="text" id="name" name="name" value="" disabled>
                           </div>
                           <div class="form-group">
@@ -506,11 +512,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                       </form>
                     </center>
                 </div>
-                
                 <!-- pwd section -->
                 <div class="bhoechie-tab-content" style="margin-top: 50px">
                     <center>                      
-                      <form method="post" action="#">
+                      <form method="post" action="custchangepwd.php">
                           <div class="form-group">
                             <label for="opwd">Old Password:</label>
                             <input type="password" class="form-control" id="opwd" name="opwd" required>
@@ -523,11 +528,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                       </form>                     
                     </center>
                 </div>
-    
                 <!-- edit section -->
                 <div class="bhoechie-tab-content"  style="margin-top: 30px">
                     <center>                      
-                      <form method="post" action="">
+                      <form method="post" action="custchangeinfo.php">
                           <div class="form-group">
                               <label for="ph">Phone number:</label>
                               <input class="form-control" type="text" name="ph" id="ph" value="">
@@ -543,22 +547,20 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                           <button type="submit" class="btn btn-primary">Submit</button>
                       </form>                      
                     </center>
-                </div>                
-            </div>
-        </div>
-  </div>
-</div>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-                    <li><a href="#">LOGOUT</a></li>
+                </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                        </div>
+                      </div>
+                    <li><a href="logout.php">LOGOUT</a></li>
                 </ul>
             </div>
         </div>
@@ -577,11 +579,36 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                   </center>
                     <!-- Tab panes -->
                     <div class="tab-content tabs">
-                        <div role="tabpanel" class="tab-pane fade in active" id="Section2">
-                            section2
-                            
+                        <div role="tabpanel" class="tab-pane fade" id="Section2">
+                            <form class="form-horizontal" action="upload.php" method="POST" enctype="multipart/form-data">
+                              <div class="form-group">      
+                                  <div class="inputwidth">
+                                    <label class="control-label">Book name: </label>
+                                      <input type="text" class="form-control" id="" placeholder="Enter book name.." name="title" required>
+                                  </div>
+                              </div>
+                              <div class="form-group">      
+                                  <div class="inputwidth">
+                                    <label class="control-label">Class: </label>
+                                      <input type="text" class="form-control" id="" placeholder="Enter class.." name="class" required>
+                                  </div>
+                              </div>
+                              <div class="form-group">      
+                                  <div class="inputwidth">
+                                    <label class="control-label">Subject: </label>
+                                      <input type="text" class="form-control" id="" placeholder="Enter subject.." name="subject" required>
+                                  </div>
+                              </div>
+                              <div class="form-group">      
+                                  <div class="inputwidth">
+                                    <input type="file" name="fileToUpload" required><br>
+                                    <!-- <center><input type="submit"></center> -->
+                                    <button type="submit">SUBMIT</button>
+                                  </div>
+                              </div>
+                            </form>
                         </div>
-                        <div role="tabpanel" class="tab-pane fade" id="Section1">
+                        <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                             <div class="col-lg-6">
                               <center><h3>Your uploads</h3></center>
                               
@@ -600,3 +627,10 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 </body>
 </body>
 </html>
+<?php
+                                            
+}
+else
+{
+   echo "<script type='text/javascript'>alert('Please Login To Continue');window.location='index.php'</script>";
+}?>
