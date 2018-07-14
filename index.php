@@ -358,7 +358,7 @@ height:50px;
         <h1 style="color: #32cd32">I AND EYE</h1>
         
         <div class="row">
-            <a><button type="button" class="btn btn-lg customer" data-toggle="modal" data-target="#myModal1">UPLOAD RESOURCES</button></a>
+            <a><button type="button" class="btn btn-lg customer" data-toggle="modal" data-target="#myModal1">UPLOAD RESOURCES</button></a><br><br>
                 <div class="modal fade" id="myModal1" style="margin-top: 50px; color: #32cd32;">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -376,12 +376,12 @@ height:50px;
           <div class="main" align="center">
     <!-- <p class="su">LOG-IN</p> -->
     
-    <form class="form1" align="center" action="customer/clogin.php" method="POST">      
-      <input class="first" type="text" placeholder="Email/Phone .." name="email" autofocus required>
-      <input class="pass1" type="password" placeholder="Password .." name="password" required>         
+    <form class="form1" align="center" action="vlogin.php" method="POST">      
+      <input class="first" type="text" placeholder="Email .." name="email" autofocus required>
+      <input class="pass1" type="password" placeholder="Password .." name="password" required> <br>        
       <input class="submit" type="submit" value="Log In" align="center"> 
     </form>
-    <a href="customer/customerregistration.php" style="text-decoration: none;"><h4 id="newacc">New User? Create an account</h4></a>
+    <a href="volunteerregistration.php" style="text-decoration: none;"><h4 id="newacc">New User? Create an account</h4></a>
   </div>
         </div>
         
@@ -447,8 +447,8 @@ height:50px;
           <div class="main" align="center">
     <!-- <p class="su">LOG-IN</p> -->
     <!-- <p style="color: #32cd32">We're your ride when you need us!</p><br> -->
-    <form class="form1" align="center" action="driver/dlogin.php" method="POST">      
-      <input class="first" type="text" placeholder="Email/Phone .." name="email" autofocus required>
+    <form class="form1" align="center" action="slogin.php" method="POST">      
+      <input class="first" type="text" placeholder="Email .." name="email" autofocus required>
       <input class="pass1" type="password" placeholder="Password .." name="password" required>         
       <input class="submit" type="submit" value="Log In" align="center"> 
     </form>
