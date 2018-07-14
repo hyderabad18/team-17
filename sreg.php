@@ -1,5 +1,5 @@
 <?php
-require_once("../DBConn.php");
+require_once("DBConn.php");
 $name = $_POST['name'];
 $email = $_POST['email'];
 $pwd = $_POST['pwd'];
