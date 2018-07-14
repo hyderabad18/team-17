@@ -5,24 +5,15 @@ include 'dbconfig/config.php';
 <html>
 <head>
 <link rel="stylesheet"  href="style.css">
-<script type="text/javascript">
-function previewImage(){
-	var ofReader=new FileReader();
-	ofReader.readAsDataURL(document.getElementById("imglnk").files[0]);
-	ofReader.onload=function(ofREvent)
-	{
-		document.getElementById("uploadpreview").src=ofREvent.target.result;
-	};
-	};
-	</script>
+
 </head>
 
-<body style="background-color:#7f8c8d">
+<body style="background-color:#00FFFF">
 <div id="main-wrapper">
 <center><h2>Register Form</h2></center>
 <form class="myform" action="register.php" method="post" enctype="multipart/form-data">
 <center><img  id="uploadpreview" class="contact" src="contact.png"/></center><br>
-<center><input type="file" name="imglnk"  id="imglnk" accept=".jpg,.jpeg,.png" onchange="previewImage();"/></center>
+
 
 <br><br>
 <label><b>full name</b></label><br>
@@ -39,6 +30,14 @@ function previewImage(){
 <input type="radio" class="radio_btn" name="expert" value="physics" checked>Physics
 <input type="radio" class="radio_btn" name="expert" value="chemistry">Chemistry
 <br><br>
+<label><b>qualification</b></label>
+<select name="qualification">
+<option value="mtech">M.Tech</option>
+<option value="btech">B.Tech</option>
+<option value="bsc">B.Sc</option>
+</select>
+<br><br>
+<label><b>date</b></label>
 <input type="date" name="date">
 <input name="submit_btn" type="submit" id="signup_btn" value="sign up"/><br>
 <a href="LR.php"><input type="button" id="back_btn" value="Back"/></a>
@@ -49,21 +48,19 @@ function previewImage(){
 if(isset($_POST['submit_btn']))
 {
 	//echo '<script type="text/javascript">alert("signup button clicked")</script>';
-	$type=$_POST['type'];
+	
 	$fullname=$_POST['fullname'];
 	$expert=$_POST['expert'];
-	
+	$email=$_POST['email'];
+	$qualification=$POST['qualification'];
 	$username=$_POST['username'];
 	$password=$_POST['password'];
 	$cpassword=$_POST['cpassword'];
-	$img_name=$_FILES['imglnk']['name'];
-	$img_size=$_FILES['imglnk']['size'];
-	$img_tmp=$_FILES['imglnk']['tmp_name'];
-	$directory='uploads/';
-		$target_file=$directory.$img_name;
+	
+		
 	if($password==$cpassword)
 	{
-		$encrypted_password=md5($password);
+
 		$query="select * from userinfotable where username='$username'";
 		$query_run=mysqli_query($con,$query);
 		if(mysqli_num_rows($query_run)>0)
@@ -82,7 +79,7 @@ if(isset($_POST['submit_btn']))
 		else
 		{
 			move_uploaded_file($img_tmp,$target_file);
-			$query=" insert into userinfotable values('','$username','$fullname','$gender','$qualification','$encrypted_password','$target_file','$type')";
+			$query=" insert into userinfotable values('','$username','$fullname','$email','$expert','$qualification','$password','$')";
 			$query_run=mysqli_query($con,$query);
 			if($query_run)
 			{
