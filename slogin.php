@@ -1,28 +1,22 @@
-<?
-session_start();
+<?php
 require_once("DBConn.php");
-$email = $_POST[''];
-$pwd = $_POST[''];
-$sql = mysqli_query($conn,"select sid,name,email,pwd,class from student where email='".$email."' and pwd='".$pwd."'") or die(mysql_error());
-$res=mysqli_num_rows($sql);
-$message="Wrong Email or Password";
-if($res>0)
-	{
-        $row=mysqli_fetch_assoc($sql);
-		$_SESSION['sid']=$row['sid'];
-        $_SESSION['name']=$row['name'];
-		echo $_SESSION['sid']."<br>";
-		echo $_SESSION['name']."<br>";
-		if(isset($_SESSION['REQUEST']) && $_SESSION['REQUEST']===TRUE)
-		{
-			echo "HI";
-			header("location:studenthome.php");
-		}
-		else{
-			header("location:index.php");
-		}
-	}
-	else{
-		echo "<script type='text/javascript'>alert('$message');window.location='index.php'</script>";
-	}
+session_start();
+$email = $_POST['email'];
+$pwd = $_POST['password'];
+// echo $pwd;
+// echo $email;
+
+$sql=mysqli_query($conn,"select sid,email,pwd from student where email='".$email."' and pwd='".$pwd."'") or die(mysql_error());
+$count = mysqli_num_rows($sql);
+if($count>0){
+	$row=mysqli_fetch_assoc($sql);
+	$_SESSION['vid']=$row['vid'];
+	header("location:volunteerhome.php");
+	// echo $_SESSION['vid'];
+	// echo "success";
+}
+else{
+	
+	echo "<script type='text/javascript'>alert('Invalid');window.location='index.php'</script>";
+}
 ?>
