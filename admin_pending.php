@@ -16,10 +16,19 @@ mysqli_connect_error());
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+  function fun($var)
+  {<?php
+	  $q="update records set status='accepted' where volunteer_name=$var";
+	  mysqli_query($dbc,$q);
+	?>
+	  
+  }
+  </script>
   </head>
 
 <?php
-$query = "SELECT volunteer_name,book_title,link,status FROM records where status='accept'";
+$query = "SELECT volunteer_name,book_title,link,status FROM records where status='pending'";
 $response = @mysqli_query($dbc, $query) ;
 if($response){
 echo '<div class="container">
@@ -78,6 +87,7 @@ echo '<div class="container">
 */
     
 while($row = mysqli_fetch_array($response)){
+	$v=$row['volunteer_name'];
 echo '<tr><td align="left">' .
 $row['volunteer_name'] . '</td><td align="left">' .
 $row['book_title'] . '</td><td align="left">'.'<a href="www.google.com">click here</a>'.
@@ -91,7 +101,8 @@ echo '<br>';
   
   <div class="btn-group btn-group-lg">
    
-    <button type="button" class="btn btn-primary">Accept</button>
+    <button type="button" class="btn btn-primary" 
+	onclick="fun($v)">Accept</button>
 	<button type="button" class="btn btn-primary">Reject</button>
     
   </div>
@@ -102,12 +113,10 @@ echo '<br>';
 }
 echo '</table>';
 } else {
-echo "Couldn't issue database query<br />";
+echo "Couldn't issue database query<br/>";
 echo "mysqli_error($dbc)";
 }
 
 mysqli_close($dbc);
 ?>
-
-
 </html>
