@@ -1,44 +1,62 @@
 <?php
 include 'dbconfig/config.php';
+
 ?>
 <!doctype html>
 <html>
 <head>
 <link rel="stylesheet"  href="style.css">
-<script type="text/javascript">
-function previewImage(){
-	var ofReader=new FileReader();
-	ofReader.readAsDataURL(document.getElementById("imglnk").files[0]);
-	ofReader.onload=function(ofREvent)
-	{
-		document.getElementById("uploadpreview").src=ofREvent.target.result;
-	};
-	};
-	</script>
-</head>
 
-<body style="background-color:#7f8c8d">
+</head>
+<?php
+
+$nameerr="";
+?>
+<body style="background-color:#00FFFF">
 <div id="main-wrapper">
-<center><h2>Register Form</h2></center>
-<form class="myform" action="register.php" method="post" enctype="multipart/form-data">
-<center><img  id="uploadpreview" class="contact" src="contact.png"/></center><br>
-<center><input type="file" name="imglnk"  id="imglnk" accept=".jpg,.jpeg,.png" onchange="previewImage();"/></center>
+<center><h2> Volunteer Registration Form</h2></center>
+<form class="myform" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+
 
 <br><br>
-<label><b>full name</b></label><br>
-<input type="text" name="fullname" class="inputvalues" placeholder="type your full name"><br><br>
+<label><b>first name</b></label>
+<span class="error" style="color:#FF0000">* <?php echo $nameerr;?></span>
+<input type="text" name="firstname"  class="inputvalues" placeholder="type your first name">
+<br><br>
+<label><b>middle name</b></label><br>
+<input type="text" name="middlename" class="inputvalues" placeholder="type your middle name"><br><br>
+<label><b>last name</b></label>
+<span class="error" style="color:#FF0000">* <?php echo $nameerr;?></span>
+<input type="text" name="lastname" class="inputvalues" placeholder="type your last name"><br><br>
 <label><b>Email</b></label>
+<span class="error" style="color:#FF0000">* <?php echo $nameerr;?></span>
 <input type="text" name="email" class="inputvalues" placeholder="enter your email">
 <br><br>
 
-<label><b>Password</b></label><br>
+<label><b>Password</b></label>
+<span class="error" style="color:#FF0000">* <?php echo $nameerr;?></span>
 <input name="password" type="password" class="inputvalues" placeholder="Type your password"><br><br>
-<label><b>Password</b></label><br>
+<label><b> Confirm Password</b></label>
+<span class="error" style="color:#FF0000">* <?php echo $nameerr;?></span>
 <input name="cpassword" type="password" class="inputvalues" placeholder="confirm your password"><br><br>
-<label><b>expertise</b></label>
-<input type="radio" class="radio_btn" name="expert" value="physics" checked>Physics
-<input type="radio" class="radio_btn" name="expert" value="chemistry">Chemistry
+<label><b>Subjects</b></label>
+<select name="subjects">
+<option value="mtech">Maths</option>
+<option value="btech">Physics</option>
+<option value="bsc">Chemistry</option>
+<option value="mtech">Economics</option>
+<option value="btech">Environmental Science</option>
+
+</select>
 <br><br>
+<label><b>qualification</b></label>
+<select name="qualification">
+<option value="mtech">M.Tech</option>
+<option value="btech">B.Tech</option>
+<option value="bsc">B.Sc</option>
+</select>
+<br><br>
+<label><b>Date of Birth</b></label>
 <input type="date" name="date">
 <input name="submit_btn" type="submit" id="signup_btn" value="sign up"/><br>
 <a href="LR.php"><input type="button" id="back_btn" value="Back"/></a>
@@ -49,40 +67,49 @@ function previewImage(){
 if(isset($_POST['submit_btn']))
 {
 	//echo '<script type="text/javascript">alert("signup button clicked")</script>';
-	$type=$_POST['type'];
-	$fullname=$_POST['fullname'];
-	$expert=$_POST['expert'];
 	
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	$cpassword=$_POST['cpassword'];
-	$img_name=$_FILES['imglnk']['name'];
-	$img_size=$_FILES['imglnk']['size'];
-	$img_tmp=$_FILES['imglnk']['tmp_name'];
-	$directory='uploads/';
-		$target_file=$directory.$img_name;
+	
+	$firstname=$_POST['firstname'];
+  
+	
+	
+    
+	
+	
+	$lastname=$_POST['lastname'];
+	
+	$middlename=$_POST['middlename'];
+
+	$email=$_POST['email'];
+	
+	
+
+	$password=$_POST["password"];
+	
+	
+	$qualification=$_POST['qualification'];
+	
+	$subjects=$_POST["subjects"];
+	$cpassword=$_POST["password"];
+	
+	
+	
+		
 	if($password==$cpassword)
 	{
-		$encrypted_password=md5($password);
-		$query="select * from userinfotable where username='$username'";
+
+		$query="select * from userinfotable where username='$firstname'";
 		$query_run=mysqli_query($con,$query);
 		if(mysqli_num_rows($query_run)>0)
 		{
 			echo '<script type="text/javascript">alert("try another username")</script>';
 		}
-		else if(file_exists($target_file))
-		{
-			echo '<script type="text/javascript">alert("try another image")</script>';
-		}
-		else if($img_size>2097152)
-		{
-			echo '<script type="text/javascript">alert("image file greater than 2mb")</script>';
-		}
+		
 			
 		else
 		{
-			move_uploaded_file($img_tmp,$target_file);
-			$query=" insert into userinfotable values('','$username','$fullname','$gender','$qualification','$encrypted_password','$target_file','$type')";
+			
+			$query=" insert into userinfotable values('','$firstname','$lastname','$middlename','$email','$subjects','$qualification','$password')";
 			$query_run=mysqli_query($con,$query);
 			if($query_run)
 			{
