@@ -83,11 +83,11 @@ body {font-family: Arial;}
 </div>
 
 <div id="London" class="tabcontent" width="100px">
-  <h3>Notification</h3>
+  <h3>Notification:</h3>
   <p>Requested Books are available now!!!</p>
   <?php
 $query = "SELECT volunteer_name,book_title,link,status FROM records where status='accepted'";
-$response = @mysqli_query($dbc, $query) ;
+$response = @mysqli_query($dbc, $query);
 if($response){
 while($row = mysqli_fetch_array($response)){
 	
@@ -114,9 +114,6 @@ mysqli_close($dbc);
 
 
 ?>
-
-
-
 </div>   </div>  
 </body>
 </html> 
