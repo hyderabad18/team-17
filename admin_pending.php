@@ -9,29 +9,105 @@ mysqli_connect_error());
 ?>
 
 
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
 <?php
-$query = "SELECT volunteer_name,book_title,link FROM records where status='pending'";
+$query = "SELECT volunteer_name,book_title,link,status FROM records where status='accept'";
 $response = @mysqli_query($dbc, $query) ;
 if($response){
-echo '<table align="left"
-cellspacing="5" cellpadding="8">
-<tr><td align="left"><b>Volunteer Name</b></td>
-<td align="left"><b>Book Title</b></td>
-<td align="left"><b>Link</b></td>
+echo '<div class="container">
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Volunteer</th>
+        <th>Book Title</th>
+        <th>Download</th>
+      </tr>
+    </thead>';
+/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-</tr>';
+<div class="container">
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td>Defaultson</td>
+        <td>def@somemail.com</td>
+      </tr>      
+      <tr class="success">
+        <td>Success</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+
+*/
+    
 while($row = mysqli_fetch_array($response)){
 echo '<tr><td align="left">' .
 $row['volunteer_name'] . '</td><td align="left">' .
-$row['book_title'] . '</td><td align="left">' .
-$row['link'] . '</td><td align="left">';
+$row['book_title'] . '</td><td align="left">'.'<a href="www.google.com">click here</a>'.
+'</td><td align="left">';
+
+
+echo '<br>';
+
+
+   echo '<div class="container">
+  
+  <div class="btn-group btn-group-lg">
+   
+    <button type="button" class="btn btn-primary">Accept</button>
+	<button type="button" class="btn btn-primary">Reject</button>
+    
+  </div>
+  
+</div>';
 echo '</tr>';
+echo '<br>';
 }
 echo '</table>';
 } else {
 echo "Couldn't issue database query<br />";
 echo "mysqli_error($dbc)";
 }
+
 mysqli_close($dbc);
 ?>
 
+
+</html>

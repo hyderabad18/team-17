@@ -1,6 +1,5 @@
 <?php
 include 'dbconfig/config.php';
-
 ?>
 <!doctype html>
 <html>
