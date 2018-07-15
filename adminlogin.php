@@ -15,6 +15,7 @@
             body {
               background: linear-gradient(to right,rgb(242, 243, 244), rgb(209, 242, 235));
       font: 400 15px Lato, sans-serif;
+margin:0 auto;
       color: #818181;
       line-height: 1.8;
     }
@@ -214,41 +215,10 @@
     <form name="customerreg" class="form1" align="center" action="cregistration.php" method="POST" onsubmit="return regform()">
       <input class="mail" type="email" placeholder="Email Address" name="email" autofocus required>
       <input class="pass1" type="password" placeholder="Choose Password" name="password" required>
-      
-          
       <input class="submit" type="submit" value="Login" align="center" required> </form>
   </div>
   <script>
-  function regform() 
-            {
-              var x=document.customerreg.email.value;  
-              var pwd = document.customerreg.password.value;
-                var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-                var phoneno = /^\d{10}$/;
-                if(!(document.customerreg.phonenumber.value.match(phoneno)))
-                {
-                  alert("Enter a Valid Phone Number!");
-                  return false;
-                }   
-                if(!re.test(pwd))
-                {
-                  alert("Password should be like 'Aa@1' and must contain 8 characters!");
-                  return false;
-                }
-                var atposition=x.indexOf("@");  
-                var dotposition=x.lastIndexOf(".");  
-                if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-                  alert("Please enter a valid e-mail address ");  
-                  return false;  
-                }
-                if (grecaptcha.getResponse() == ""){
-                    alert("Please click on I'm not a robot");
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-</script>
+  
 </body>
 
 </html>
