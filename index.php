@@ -341,8 +341,8 @@ height:50px;
                         <div class="dropdown">
                             <button class="dropbtn" style="font-family: Alegreya">LOGIN</button>
                             <div class="dropdown-content">
-                                <a href="vreg.php">Volunteer</a>
-                                <a href="creg.php">student</a>
+                                <a data-toggle="modal" data-target="#myModal3">Volunteer</a>
+			        <a data-toggle="modal" data-target="#myModal4">Student</a>
                             </div>
                         </div>
                     </li>
