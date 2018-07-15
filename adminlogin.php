@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="en" >
-
 <head>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <meta charset="UTF-8">
@@ -211,45 +211,14 @@
   <div class="main" align="center">
     <p class="su">LOGIN</p>
     <p style="color: #32cd32">You're one step away from using our services!</p><br>
-    <form name="customerreg" class="form1" align="center" action="cregistration.php" method="POST" onsubmit="return regform()">
+    <form name="customerreg" class="form1" align="center" action="alogin.php" method="POST">
       <input class="mail" type="email" placeholder="Email Address" name="email" autofocus required>
-      <input class="pass1" type="password" placeholder="Choose Password" name="password" required>
-      
-          
+      <input class="pass1" type="password" placeholder="Choose Password" name="password" required>        
       <input class="submit" type="submit" value="Login" align="center" required> </form>
   </div>
-  <script>
-  function regform() 
-            {
-              var x=document.customerreg.email.value;  
-              var pwd = document.customerreg.password.value;
-                var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-                var phoneno = /^\d{10}$/;
-                if(!(document.customerreg.phonenumber.value.match(phoneno)))
-                {
-                  alert("Enter a Valid Phone Number!");
-                  return false;
-                }   
-                if(!re.test(pwd))
-                {
-                  alert("Password should be like 'Aa@1' and must contain 8 characters!");
-                  return false;
-                }
-                var atposition=x.indexOf("@");  
-                var dotposition=x.lastIndexOf(".");  
-                if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){  
-                  alert("Please enter a valid e-mail address ");  
-                  return false;  
-                }
-                if (grecaptcha.getResponse() == ""){
-                    alert("Please click on I'm not a robot");
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-</script>
+
 </body>
 
 </html>
+
     
