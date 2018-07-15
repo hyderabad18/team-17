@@ -1,13 +1,9 @@
-<?php session_start();
-if(isset($_SESSION['name']))
-{
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Theme Made By www.w3schools.com - No Copyright -->
-    <title>IandEYE</title>
+    <title>Jeev60 Transport</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -477,17 +473,112 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
                     <div class="tab-content tabs">
                         <div role="tabpanel" class="tab-pane fade in active" id="Section1">
                             <center>
-                            section1
+                            
+                            <?php 
+
+$server="localhost";
+$user = "root";
+$pass = "";
+
+$conn = mysqli_connect($server,$user,$pass,'iandeye');
+
+$status="pending";
+
+$sql = "SELECT * FROM records WHERE status='$status'";
+
+
+$result=$conn->query($sql);
+ $rows=$result->fetch_all(MYSQLI_ASSOC);
+ $row="";
+ 
+ foreach($rows as $row)
+ {
+  //$output.='<p>'.$row["name"].'</p>';
+  echo '<div class="panel panel-default">
+      <h5>'.$row["title"].'</h5>
+      <h5>'.$row["subject"].'</h5>
+      <h5>'.$row["class"].'</h5>
+      <audio controls>
+      <source src=" '.$row["link"].'" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio><br>
+      
+      ';
+  }
+       
+?>
+
                             </center>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Section2">
                             <div class="col-lg-6">
-                             section 2
+                             
+                             <?php 
+
+$server="localhost";
+$user = "root";
+$pass = "";
+
+$conn = mysqli_connect($server,$user,$pass,'iandeye');
+
+$status="approved";
+
+$sql = "SELECT * FROM records WHERE status='$status'";
+
+
+$result=$conn->query($sql);
+ $rows=$result->fetch_all(MYSQLI_ASSOC);
+ $row="";
+ 
+ foreach($rows as $row)
+ {
+  //$output.='<p>'.$row["name"].'</p>';
+  echo '<div class="panel panel-default">
+      <h5>'.$row["title"].'</h5>
+      <h5>'.$row["subject"].'</h5>
+      <h5>'.$row["class"].'</h5>
+      <audio controls>
+      <source src=" '.$row["link"].'" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>';
+     }  
+?>
                             </div>                           
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="Section3">
                             <div class="container">
-                                section 3
+                                
+                                <?php 
+
+$server="localhost";
+$user = "root";
+$pass = "";
+
+$conn = mysqli_connect($server,$user,$pass,'iandeye');
+
+$status="rejected";
+
+$sql = "SELECT * FROM records WHERE status='$status'";
+
+
+$result=$conn->query($sql);
+ $rows=$result->fetch_all(MYSQLI_ASSOC);
+ $row="";
+ 
+ foreach($rows as $row)
+ {
+  //$output.='<p>'.$row["name"].'</p>';
+  echo '<div class="panel panel-default">
+      <h5>'.$row["title"].'</h5>
+      <h5>'.$row["subject"].'</h5>
+      <h5>'.$row["class"].'</h5>
+      <audio controls>
+      <source src=" '.$row["link"].'" type="audio/mpeg">
+      Your browser does not support the audio element.
+      </audio>';
+    }
+       
+?>
                             </div>
                         </div>
                         
@@ -502,14 +593,21 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
        
         
          <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-
+<script type="text/javascript">
+  // function func1(){
+  //   <?php
+  //   require_once("DBConn.php");
+  //   session_start();
+  //   $sql = mysqli_query($conn, "update records set status = 'approved' where vid = $_SESSION['vid']");
+  //   ?>
+  // }
+</script>
 </body>
 
 </html>
-<?php
-                                            
-}
-else
-{
-   echo "<script type='text/javascript'>alert('Please Login To Continue');window.location='adminlogin.php'</script>";
-}?>
+
+
+
+
+
+
