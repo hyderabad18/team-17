@@ -14,7 +14,7 @@ mysqli_connect_error());
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
-function openCity(evt, cityName) {
+function openCity(evt, cityName){
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -84,23 +84,17 @@ body {font-family: Arial;}
 
 <div id="London" class="tabcontent" width="100px">
   <h3>Notification:</h3>
-  <p>Requested Books are available now!!!</p>
+  <p>Requested Books are available now!!</p>
   <?php
 $query = "SELECT volunteer_name,book_title,link,status FROM records where status='accepted'";
 $response = @mysqli_query($dbc, $query);
 if($response){
 while($row = mysqli_fetch_array($response)){
 	
-echo '<tr><td align="left">' .
+echo '<tr><td align="left">'.
 
-$row['book_title'] . '</td>';
-
-
-
+$row['book_title']. '</td>';
 echo '<br>';
-
-
-   
 echo '</tr>';
 echo '<br>';
 }
