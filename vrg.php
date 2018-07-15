@@ -1,11 +1,9 @@
 <?php
 include 'dbconfig/config.php';
-
 ?>
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet"  href="style.css">
 
 </head>
 <?php
@@ -20,7 +18,8 @@ $nameerr="";
 
 <br><br>
 <label><b>first name</b></label>
-<span class="error" style="color:#FF0000">* <?php echo $nameerr;?></span>
+<span class="error" style="color:#FF0000">*
+ <?php echo $nameerr;?></span>
 <input type="text" name="firstname"  class="inputvalues" placeholder="type your first name">
 <br><br>
 <label><b>middle name</b></label><br>
@@ -44,8 +43,7 @@ $nameerr="";
 <option value="mtech">Maths</option>
 <option value="btech">Physics</option>
 <option value="bsc">Chemistry</option>
-<option value="mtech">Economics</option>
-<option value="btech">Environmental Science</option>
+
 
 </select>
 <br><br>
